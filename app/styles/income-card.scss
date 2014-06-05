@@ -18,8 +18,10 @@ $incomeCardColor: $green;
   margin: 10px 10px 10px 0;
   text-align: center;
   display: inline-block;
+  opacity: 0.8;
   &.income-card-active {
     background-color: lighten($incomeCardColor, 10);
+    opacity: 1;
   }
   p {
     margin: 0rem;

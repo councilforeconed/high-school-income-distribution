@@ -1,5 +1,5 @@
 {
-  "name": "unemployment-survey",
+  "name": "income-distribution",
   "namespace": "appkit",
   "APIMethod": "stub",
   "proxyURL": "http://localhost:8000",
@@ -16,7 +16,7 @@
     "build": "grunt build:debug",
     "test": "grunt test:ci",
     "postinstall": "bower install",
-    "deploy": "grunt dist && scp -r dist/* cee:~/technology/unemployment-survey"
+    "deploy": "grunt dist && scp -r dist/* cee:~/technology/hs-econ-income-distribution"
   },
   "author": "",
   "license": "MIT",

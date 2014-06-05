@@ -14,6 +14,34 @@ export default Ember.ArrayController.extend(Ember.Evented, {
   correctAnswer: false,
   errorMessage: null,
   successMessage: null,
+  binValues: null,
+
+  sum: function () {
+    var binValues = this.get('binValues');
+    if (!binValues) return 0;
+    return binValues.reduce(function (p,c) {
+      return p + c;
+    }, 0);
+  }.property('binValues'),
+
+  mean: function () {
+    var binValues = this.get('binValues');
+    if (!binValues) return 0;
+    return this.get('sum') / binValues.length;
+  }.property('binValues', 'sum'),
+
+  median: function () {
+    var binValues = this.get('binValues');
+    if (!binValues) return 0;
+    var length = binValues.length;
+    if (length % 2 === 0) {
+      var a = binValues[Math.floor(length/2)];
+      var b = binValues[Math.floor(length/2) - 1];
+      return (a + b) / 2;
+    } else {
+      return binValues[Math.floor(length/2)];
+    }
+  }.property('binValues'),
 
   quintiles: function () {
     var incomes = this.get('content').sortBy('value');
@@ -25,26 +53,31 @@ export default Ember.ArrayController.extend(Ember.Evented, {
     return quintiles;
   }.property('content'),
 
+  sortedValues: function () {
+    return _.flatten(this.get('quintiles'))
+      .map(function (card) {
+        return card.get('value');
+      }).sort(function (a, b) {
+        return a - b;
+      });
+  }.property('quintiles'),
+
   bins: function () {
     var bins = BinCollection.create({ controller: this });
     return bins.get('bins');
   }.property(),
 
   onBinChange: function () {
-    var binValues = this.get('bins')
-      .map(function (x) { return x.get('cards'); });
-    binValues = _.flatten(binValues)
+    var binValues = _(this.get('bins'))
+      .map(function (x) { return x.get('cards'); })
+      .flatten()
       .map(function (card) { return card.get('value'); })
       .sort(function (a, b) {
         return a - b;
-      });
-    var quintiles = _.flatten(this.get('quintiles'))
-      .map(function (card) {
-        return card.get('value');
-      }).sort(function (a, b) {
-        return a - b;
-      });
-    this.set('correctAnswer', _.isEqual(binValues,quintiles));
+      }).value();
+    this.set('binValues', binValues);
+    var values = this.get('sortedValues');
+    this.set('correctAnswer', _.isEqual(binValues,values));
   },
 
   actions: {

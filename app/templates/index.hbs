@@ -1,12 +1,36 @@
+<div class="Instructions">
+  <h2>Instructions</h2>
+  <p><strong>Activity 14.1 and 14.2</strong>: Rank the household incomes from the lowest income to the highest, by dividing the incomes into five equal groups amongst the quintiles below to determine the aggregate income for each group.</p>
+  <p class="screen-warning">This activity works best on a device with a wider screen. If you're using a tablet, try rotating it into portrait mode.</p>
+</div>
+
+<div class="container stats">
+  <div class="four columns">
+    <h4>Sum</h4>
+    <p class="stat">{{format-currency sum alt="$0.00"}}</p>
+  </div>
+  <div class="four columns">
+    <h4>Median</h4>
+    <p class="stat">{{format-currency median alt="$0.00"}}</p>
+  </div>
+  <div class="four columns">
+    <h4>Mean</h4>
+    <p class="stat">{{format-currency mean alt="$0.00"}}</p>
+  </div>
+  <div class="four columns">
+    <p>What does this data tell you about the distribution of income for households in this fictitious country?</p>
+  </div>
+</div>
+
 <div class="playground">
   <div class="income-cards">
   {{#each}}
-      {{income-card card=this zIndex=zIndex}}
+      {{income-card card=this}}
   {{/each}}
   </div>
   <div class="quintile-bins">
   {{#each bin in bins}}
-      {{quintile-bin bin=bin}}
+      {{quintile-bin bin=bin sum=sum}}
   {{/each}}
   </div>
 </div>
@@ -14,5 +38,5 @@
 <div class="button-bar">
   {{#if successMessage}}<span class="success-message">{{successMessage}}</span>{{/if}}
   {{#if errorMessage}}<span class="error-message">{{errorMessage}}</span>{{/if}}
-  <button {{action 'checkAnswers'}}>Check Answers</button>
+  <button {{action 'checkAnswers'}}>Check Distribution</button>
 </div>

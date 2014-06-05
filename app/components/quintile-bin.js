@@ -9,6 +9,10 @@ export default Ember.Component.extend({
     }, 0);
   }.property('bin.cards.@each'),
 
+  percentageOfWhole: function () {
+    return this.get('total') / this.get('sum');
+  }.property('total', 'sum'),
+
   didInsertElement: function () {
     this.$().droppable({
       activeClass: "box-active",

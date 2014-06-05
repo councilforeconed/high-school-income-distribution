@@ -1,6 +1,13 @@
 /* global numeral */
 
-export default Ember.Handlebars.makeBoundHelper(function(number) {
+export default Ember.Handlebars.makeBoundHelper(function(number, options) {
   if (number.toString === number) return number;
-  return numeral(number).format('0.00%');
+  if (!number) {
+    if (options.hash.alt) {
+      return numeral(options.hash.alt).format('0.0%');
+    }
+    return '';
+  } else {
+    return numeral(number).format('0.0%');
+  }
 });
