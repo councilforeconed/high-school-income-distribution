@@ -1,7 +1,7 @@
 <div class="playground">
   <div class="income-cards">
   {{#each}}
-      {{income-card card=this}}
+      {{income-card card=this zIndex=zIndex}}
   {{/each}}
   </div>
   <div class="quintile-bins">
@@ -9,4 +9,10 @@
       {{quintile-bin bin=bin}}
   {{/each}}
   </div>
+</div>
+
+<div class="button-bar">
+  {{#if successMessage}}<span class="success-message">{{successMessage}}</span>{{/if}}
+  {{#if errorMessage}}<span class="error-message">{{errorMessage}}</span>{{/if}}
+  <button {{action 'checkAnswers'}}>Check Answers</button>
 </div>

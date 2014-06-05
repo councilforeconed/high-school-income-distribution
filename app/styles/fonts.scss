@@ -1,3 +1,5 @@
+@import 'colors';
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
@@ -14,4 +16,28 @@ strong {
 
 tspan {
   font-family: 'Open Sans';
+}
+
+.error-message {
+  color: $red;
+  font-weight: 700;
+  outline: none;
+  padding: 0.8rem 2rem;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.success-message {
+  color: $green;
+  font-weight: 700;
+  outline: none;
+  padding: 0.8rem 2rem;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
 }

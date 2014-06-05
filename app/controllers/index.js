@@ -9,7 +9,11 @@ export default Ember.ArrayController.extend(Ember.Evented, {
     this.on('binChange', this.onBinChange);
   },
 
+  zIndex: 0,
+  isComplete: false,
   correctAnswer: false,
+  errorMessage: null,
+  successMessage: null,
 
   quintiles: function () {
     var incomes = this.get('content').sortBy('value');
@@ -41,7 +45,20 @@ export default Ember.ArrayController.extend(Ember.Evented, {
         return a - b;
       });
     this.set('correctAnswer', _.isEqual(binValues,quintiles));
-    console.log(binValues, quintiles, this.get('correctAnswer'));
+  },
+
+  actions: {
+    checkAnswers: function () {
+      if (!this.get('correctAnswer')) {
+        var self = this;
+        this.set('errorMessage', 'Hmm. That doesn\'t seem to be correct. Keep trying.');
+        setTimeout(function () {
+          self.set('errorMessage', null);
+        }, 3000);
+      } else {
+        this.set('successMessage', 'Correct!');
+      }
+    }
   }
 
 });

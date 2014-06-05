@@ -2,10 +2,19 @@
 
 $incomeCardColor: $green;
 
+.income-cards {
+  background-color: $lightBlue;
+  margin: 2rem 0;
+  padding: 1em;
+  border-radius: 3px;
+  text-align: center;
+}
+
 .income-card {
   background-color: $incomeCardColor;
   color: white;
-  padding: 1rem 2rem;
+  border-radius: 3px;
+  padding: 0.8rem 1rem;
   margin: 10px 10px 10px 0;
   text-align: center;
   display: inline-block;

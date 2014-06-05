@@ -16,6 +16,7 @@
     "ember-charts": "*",
     "jquery-ui": "~1.10.4",
     "lodash": "~2.4.1",
-    "d3": "~3.4.8"
+    "d3": "~3.4.8",
+    "jquery-ui-touch-punch-working": "*"
   }
 }
