@@ -25,9 +25,9 @@ export default Ember.Route.extend({
       165000,
       311000
     ];
-    return incomes.map(function (card) {
+    return _.shuffle(incomes.map(function (card) {
       return IncomeCard.create({value: card});
-    });
+    }));
   }
 
 });
