@@ -1,0 +1,12 @@
+<div class="playground">
+  <div class="income-cards">
+  {{#each}}
+      {{income-card card=this}}
+  {{/each}}
+  </div>
+  <div class="quintile-bins">
+  {{#each bin in bins}}
+      {{quintile-bin bin=bin}}
+  {{/each}}
+  </div>
+</div>

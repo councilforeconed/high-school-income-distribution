@@ -1,0 +1,20 @@
+@import 'colors';
+
+$quintileBinColor: $pale;
+
+.quintile-bins {
+  text-align: center;
+}
+
+.quintile-bin {
+  width: 19%;
+  display: inline-block;
+  background-color: $quintileBinColor;
+  min-height: 400px;
+  border: 1px solid darken($quintileBinColor,30);
+}
+
+.quintile-total {
+  background-color: darken($quintileBinColor,10);
+  padding: 0.5rem;
+}
