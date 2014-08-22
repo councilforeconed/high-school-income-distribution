@@ -69,14 +69,19 @@ export default Ember.ArrayController.extend(Ember.Evented, {
 
   onBinChange: function () {
     var binValues = _(this.get('bins'))
-      .map(function (x) { return x.get('cards'); })
+      .map(function (x) {
+        return x.get('cards')
+                .map(function (x) {
+                  return x.get('value')
+                }).sort(function (a,b) {
+                  return a - b
+                });
+      })
       .flatten()
-      .map(function (card) { return card.get('value'); })
-      .sort(function (a, b) {
-        return a - b;
-      }).value();
+      .value();
     this.set('binValues', binValues);
     var values = this.get('sortedValues');
+    console.log(_.isEqual(binValues,values),binValues,values)
     this.set('correctAnswer', _.isEqual(binValues,values));
   },
 

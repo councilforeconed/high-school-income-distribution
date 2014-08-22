@@ -19,5 +19,8 @@
     "d3": "~3.4.8",
     "jquery-ui-touch-punch-working": "*",
     "simple-statistics": "~0.8.1"
+  },
+  "resolutions": {
+    "lodash": "~2.4.1"
   }
 }
